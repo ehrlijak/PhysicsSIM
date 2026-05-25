@@ -27,8 +27,8 @@ function draw() {
     ctx.fillRect(state.x, state.y, state.w, state.h);
 }
 function update() {
+    let friction = 7
     let gravityForce = 1;
-
     let ay = gravityForce / state.mass;
 
     state.vy += ay;
@@ -37,8 +37,10 @@ function update() {
 
     if (state.y + state.h > floor) {
         state.y = floor - state.h;
-        state.vy = 0;
+        state.vy = -state.vy + friction;
     }
+
+
 }
 
 loop();
