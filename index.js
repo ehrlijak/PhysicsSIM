@@ -1,8 +1,16 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-
+const keys = {};
 const bg = new Image();
 bg.src = "pictures/beach.jpg";
+
+window.addEventListener("keydown", (e) => {
+    keys[e.key] = true;
+});
+
+window.addEventListener("keyup", (e) => {
+    keys[e.key] = false;
+});
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -64,6 +72,14 @@ function update() {
     if (state.x < 0) {
         state.x = 0;
         state.vx *= -0.6;
+    }
+
+    if (keys["d"]) {
+        state.vx += 0.1;
+    }
+
+    if (keys["a"]) {
+        state.vx -= 0.1;
     }
 }
 
